@@ -3,22 +3,22 @@ package org.example;
 import java.util.Objects;
 
 /**
- * Клас для електронних книг, успадкований від Book
+ * Клас для електронних книг, успадкований від Book.
  */
 public class EBook extends Book {
     private EBookFormat format; // у форматі PDF, EPUB та інші
     private double fileSize; // у мегабайтах(MB)
 
     /**
-     * Конструктор створення електронної книги
+     * Конструктор створення електронної книги.
      *
-     * @param title Назва книги
-     * @param author Автор книги
-     * @param year Рік видання
-     * @param isbn ISBN книги
-     * @param pages Кількість сторінок
-     * @param genre Жанр книги
-     * @param format Формат електронної книги
+     * @param title    Назва книги
+     * @param author   Автор книги
+     * @param year     Рік видання
+     * @param isbn     ISBN книги
+     * @param pages    Кількість сторінок
+     * @param genre    Жанр книги
+     * @param format   Формат електронної книги
      * @param fileSize Розмір електронної книги
      */
     public EBook(String title, String author, int year, String isbn, int pages, Genre genre,
@@ -29,7 +29,7 @@ public class EBook extends Book {
     }
 
     /**
-     * Конструктор копіювання для електронної книги
+     * Конструктор копіювання для електронної книги.
      *
      * @param ebook об'єкт для копіювання
      */
@@ -40,24 +40,27 @@ public class EBook extends Book {
     }
 
     /**
-     * Отримує формат електронної книги
+     * Отримує формат електронної книги.
      *
      * @return Формат електронної книги
      */
-    public EBookFormat getFileFormat() { return format; }
+    public EBookFormat getFileFormat() {
+        return format;
+    }
 
     /**
-     * Встановлює формат електронної книги
+     * Встановлює формат електронної книги.
      *
      * @param format Формат електронної книги
      */
     public void setFileFormat(EBookFormat format) throws GenreException {
-        if (format == null) throw new GenreException("Формат файлу не може бути порожнім.");
+        if (format == null) throw new GenreException("Формат файлу не може "
+                + "бути порожнім.");
         this.format = format;
     }
 
     /**
-     * Отримує розмір електронної книги
+     * Отримує розмір електронної книги.
      *
      * @return Розмір електронної книги
      */
@@ -66,7 +69,7 @@ public class EBook extends Book {
     }
 
     /**
-     * Встановлює розмір електронної книги
+     * Встановлює розмір електронної книги.
      *
      * @param fileSize Розмір електронної книги
      */

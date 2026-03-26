@@ -48,7 +48,7 @@ public class BookComparator {
 
     /**
      * Компаратор для сортування книг за кількістю сторінок (від меншої до більшої).
-     *
+     * <p>
      * Приклад використання:
      * books.sort(BookComparator.byPages);
      */

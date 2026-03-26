@@ -3,20 +3,20 @@ package org.example;
 import java.util.Objects;
 
 /**
- * Клас для паперових книг, успадкований від Book
+ * Клас для паперових книг, успадкований від Book.
  */
 public class PaperBook extends Book {
     private boolean hardcover;
 
     /**
-     * Конструктор створення паперової книги
+     * Конструктор створення паперової книги.
      *
-     * @param title Назва книги
-     * @param author Автор книги
-     * @param year Рік видання
-     * @param isbn ISBN книги
-     * @param pages Кількість сторінок
-     * @param genre Жанр книги
+     * @param title     Назва книги
+     * @param author    Автор книги
+     * @param year      Рік видання
+     * @param isbn      ISBN книги
+     * @param pages     Кількість сторінок
+     * @param genre     Жанр книги
      * @param hardcover Обкладинка паперової книги
      */
     public PaperBook(String title, String author, int year, String isbn, int pages, Genre genre, boolean hardcover) throws GenreException, YearException, PagesException, AuthorException, TitleException, IsbnException {
@@ -25,7 +25,7 @@ public class PaperBook extends Book {
     }
 
     /**
-     * Конструктор копіювання для паперової книги
+     * Конструктор копіювання для паперової книги.
      *
      * @param paperbook об'єкт для копіювання
      */
@@ -38,7 +38,7 @@ public class PaperBook extends Book {
      * Повертає інформацію про тип обкладинки книги.
      *
      * @return {@code true} - якщо книга має тверду обкладинку,
-     *         {@code false} - якщо книга має м'яку обкладинку
+     * {@code false} - якщо книга має м'яку обкладинку
      */
     public boolean getHardcover() {
         return hardcover;
@@ -65,7 +65,7 @@ public class PaperBook extends Book {
     }
 
     /**
-     * Генерує унікальний хеш-код для об'єкта
+     * Генерує унікальний хеш-код для об'єкта.
      *
      * @return Числове значення хешу.
      */

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 /**
- * Клас для запису про видачу книги
+ * Клас для запису про видачу книги.
  */
 public class LoanRecord {
     private final UUID recordId;
@@ -14,11 +14,12 @@ public class LoanRecord {
     private LocalDate returnDate;
 
     /**
-     * Конструктор для створення запису про видачу
-     * @param book книга, яку видають
+     * Конструктор для створення запису про видачу.
+     *
+     * @param book         книга, яку видають
      * @param borrowerName ім'я позичальника
-     * @param loanDate дата видачі
-     * @param returnDate дата повернення
+     * @param loanDate     дата видачі
+     * @param returnDate   дата повернення
      */
     public LoanRecord(Book book, String borrowerName, LocalDate loanDate, LocalDate returnDate) {
         this.recordId = UUID.randomUUID();
@@ -29,14 +30,17 @@ public class LoanRecord {
     }
 
     /**
-     * Отримує унікальний ідентифікатор запису про видачу
+     * Отримує унікальний ідентифікатор запису про видачу.
+     *
      * @return UUID запису
      */
     public UUID getRecordId() {
         return recordId;
     }
+
     /**
-     * Отримує книгу, яка була видана
+     * Отримує книгу, яка була видана.
+     *
      * @return об'єкт книги
      */
     public Book getBook() {
@@ -44,7 +48,8 @@ public class LoanRecord {
     }
 
     /**
-     * Отримує ім'я позичальника
+     * Отримує ім'я позичальника.
+     *
      * @return рядок з ім'ям позичальника
      */
     public String getBorrowerName() {
@@ -52,7 +57,8 @@ public class LoanRecord {
     }
 
     /**
-     * Отримує дату видачі книги
+     * Отримує дату видачі книги.
+     *
      * @return об'єкт LocalDate з датою видачі
      */
     public LocalDate getLoanDate() {
@@ -60,7 +66,8 @@ public class LoanRecord {
     }
 
     /**
-     * Отримує дату повернення книги
+     * Отримує дату повернення книги.
+     *
      * @return об'єкт LocalDate з датою повернення або null, якщо книга ще не повернена
      */
     public LocalDate getReturnDate() {
@@ -68,7 +75,8 @@ public class LoanRecord {
     }
 
     /**
-     * Встановлює дату повернення книги
+     * Встановлює дату повернення книги.
+     *
      * @param returnDate дата повернення (може бути null, якщо книга ще не повернена)
      */
     public void setReturnDate(LocalDate returnDate) {
@@ -77,7 +85,8 @@ public class LoanRecord {
     }
 
     /**
-     * Перевизначений метод для рядкового представлення об'єкта
+     * Перевизначений метод для рядкового представлення об'єкта.
+     *
      * @return рядок з інформацією про видачу у форматі:
      */
     @Override

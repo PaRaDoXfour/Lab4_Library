@@ -4,22 +4,22 @@ import java.time.Year;
 import java.util.Objects;
 
 /**
- * Клас для рідкісних книг, успадкований від PaperBook
+ * Клас для рідкісних книг, успадкований від PaperBook.
  */
 public class RareBook extends PaperBook {
     private int estimatedValue; // орієнтовна вартість у доларах
     private Year firstPrintYear; // рік першого видання
 
     /**
-     * Конструктор створення рідкісної книги
+     * Конструктор створення рідкісної книги.
      *
-     * @param title Назва книги
-     * @param author Автор книги
-     * @param year Рік видання
-     * @param isbn ISBN книги
-     * @param pages Кількість сторінок
-     * @param genre Жанр книги
-     * @param hardcover Тип обкладинки
+     * @param title          Назва книги
+     * @param author         Автор книги
+     * @param year           Рік видання
+     * @param isbn           ISBN книги
+     * @param pages          Кількість сторінок
+     * @param genre          Жанр книги
+     * @param hardcover      Тип обкладинки
      * @param estimatedValue Орієнтовна вартість у доларах
      * @param firstPrintYear Рік першого видання
      */
@@ -31,7 +31,7 @@ public class RareBook extends PaperBook {
     }
 
     /**
-     * Конструктор копіювання для рідкісної книги
+     * Конструктор копіювання для рідкісної книги.
      *
      * @param rareBook об'єкт для копіювання
      */
@@ -42,7 +42,7 @@ public class RareBook extends PaperBook {
     }
 
     /**
-     * Отримує орієнтовну вартість книги
+     * Отримує орієнтовну вартість книги.
      *
      * @return Вартість у доларах
      */
@@ -51,7 +51,7 @@ public class RareBook extends PaperBook {
     }
 
     /**
-     * Встановлює орієнтовну вартість книги
+     * Встановлює орієнтовну вартість книги.
      *
      * @param estimatedValue Вартість у доларах (має бути більше за 0)
      * @throws ValueException якщо вартість недопустима
@@ -64,7 +64,7 @@ public class RareBook extends PaperBook {
     }
 
     /**
-     * Отримує рік першого видання
+     * Отримує рік першого видання.
      *
      * @return Рік першого видання
      */
@@ -73,7 +73,7 @@ public class RareBook extends PaperBook {
     }
 
     /**
-     * Встановлює рік першого видання
+     * Встановлює рік першого видання.
      *
      * @param firstPrintYear Рік першого видання (має бути не пізніше року видання)
      * @throws FirstPrintYearException якщо рік недопустимий
@@ -97,7 +97,7 @@ public class RareBook extends PaperBook {
     }
 
     /**
-     * Генерує унікальний хеш-код для об'єкта
+     * Генерує унікальний хеш-код для об'єкта.
      *
      * @return Числове значення хешу.
      */

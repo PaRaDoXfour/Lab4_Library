@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * Клас для роботи з файлами - читання та запис даних
+ * Клас для роботи з файлами - читання та запис даних.
  */
 public class FileHandler {
     // Ім'я файлу для зберігання даних
     private static final String FILE_NAME = "input.txt";
 
     /**
-     * Зчитує дані про бібліотеку з файлу
+     * Зчитує дані про бібліотеку з файлу.
      *
      * @return Об'єкт Library або null, якщо дані не знайдені
      * @throws IOException якщо виникають проблеми з читанням файлу
-     * Формат файлу на початку:
-     * [Library]
-     * Назва бібліотеки
-     * Адрес бібліотеки
+     *                     Формат файлу на початку:
+     *                     [Library]
+     *                     Назва бібліотеки
+     *                     Адрес бібліотеки
      */
     public static Library readLibraryFromFile() throws IOException, InvalidDataException, LibraryNameException, LibraryAddressException {
         File file = new File(FILE_NAME);
@@ -42,21 +42,21 @@ public class FileHandler {
     }
 
     /**
-     * Зчитує список книг з файлу
+     * Зчитує список книг з файлу.
      *
      * @return ArrayList<Book> - список книг, зчитаних з файлу
      * @throws IOException якщо виникають проблеми з читанням файлу
-     * Формат файлу:
-     * Кожна книга зберігається у вигляді блоків даних:
-     * [ТипКниги]
-     * Назва
-     * Автор
-     * Рік
-     * ISBN
-     * Сторінки
-     * Жанр
-     * [Додаткові поля залежно від типу]
-     * [Пустий рядок]
+     *                     Формат файлу:
+     *                     Кожна книга зберігається у вигляді блоків даних:
+     *                     [ТипКниги]
+     *                     Назва
+     *                     Автор
+     *                     Рік
+     *                     ISBN
+     *                     Сторінки
+     *                     Жанр
+     *                     [Додаткові поля залежно від типу]
+     *                     [Пустий рядок]
      */
     public static ArrayList<Book> readBooksFromFile() throws IOException {
         ArrayList<Book> books = new ArrayList<>();
@@ -92,10 +92,10 @@ public class FileHandler {
     }
 
     /**
-     * Допоміжний метод для читання даних конкретної книги
+     * Допоміжний метод для читання даних конкретної книги.
      *
      * @param reader BufferedReader для читання даних
-     * @param type тип книги (визначає формат даних)
+     * @param type   тип книги (визначає формат даних)
      * @return об'єкт Book або null, якщо виникла помилка
      * @throws IOException якщо виникають проблеми з читанням даних
      */
@@ -138,7 +138,7 @@ public class FileHandler {
     }
 
     /**
-     * Допоміжний метод для читання рядка з перевіркою на null
+     * Допоміжний метод для читання рядка з перевіркою на null.
      *
      * @param reader BufferedReader для читання даних
      * @return рядок без зайвих пробілів
@@ -153,23 +153,23 @@ public class FileHandler {
     }
 
     /**
-     * Зберігає список книг у файл
+     * Зберігає список книг у файл.
      *
      * @param books список книг для збереження
      * @throws IOException якщо виникнуть проблеми з записом у файл
-     * <p></p>
-     * <br>
-     * Формат запису:
-     * Кожна книга зберігається у вигляді послідовності рядків:
-     * [ТипКниги]
-     * Назва
-     * Автор
-     * Рік
-     * ISBN
-     * Сторінки
-     * Жанр
-     * [Додаткові поля залежно від типу]
-     * [Пустий рядок]
+     *                     <p></p>
+     *                     <br>
+     *                     Формат запису:
+     *                     Кожна книга зберігається у вигляді послідовності рядків:
+     *                     [ТипКниги]
+     *                     Назва
+     *                     Автор
+     *                     Рік
+     *                     ISBN
+     *                     Сторінки
+     *                     Жанр
+     *                     [Додаткові поля залежно від типу]
+     *                     [Пустий рядок]
      */
     public static void saveBooksToFile(Library library, ArrayList<Book> books) throws IOException, InvalidDataException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {

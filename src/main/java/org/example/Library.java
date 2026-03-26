@@ -9,16 +9,16 @@ import java.util.stream.Collectors;
  * Містить колекцію книг з інформацією про їх кількість.
  */
 public class Library {
+    private final Map<Book, Integer> bookInventory;
+    private final List<LoanRecord> loanRecords;
     private UUID id;
     private String name;
     private String address;
-    private final Map<Book, Integer> bookInventory;
-    private final List<LoanRecord> loanRecords;
 
     /**
      * Конструктор для створення бібліотеки з назвою та адресою.
      *
-     * @param name Назва бібліотеки
+     * @param name    Назва бібліотеки
      * @param address Адреса бібліотеки
      */
     public Library(String name, String address) throws LibraryNameException, LibraryAddressException {
@@ -30,11 +30,12 @@ public class Library {
     }
 
     /**
-     * Видає книгу читачеві
-     * @param book книга для видачі
+     * Видає книгу читачеві.
+     *
+     * @param book         книга для видачі
      * @param borrowerName ім'я позичальника
-     * @param loanDate дата видачі
-     * @param returnDate очікувана дата повернення
+     * @param loanDate     дата видачі
+     * @param returnDate   очікувана дата повернення
      * @return true, якщо книга успішно видана
      * @throws BookNotFoundException якщо книги немає в наявності
      */
@@ -68,8 +69,9 @@ public class Library {
     }
 
     /**
-     * Повертає книгу до бібліотеки
-     * @param recordId ID запису про видачу
+     * Повертає книгу до бібліотеки.
+     *
+     * @param recordId         ID запису про видачу
      * @param actualReturnDate фактична дата повернення
      * @return true, якщо книга успішно повернена
      * @throws BookNotFoundException якщо запис про видачу не знайдено
@@ -102,7 +104,8 @@ public class Library {
     }
 
     /**
-     * Отримує список активних видач (книги, які ще не повернуто)
+     * Отримує список активних видач (книги, які ще не повернуто).
+     *
      * @return список активних видач
      */
     public List<LoanRecord> getActiveLoans() {
@@ -112,7 +115,8 @@ public class Library {
     }
 
     /**
-     * Пошук книги за UUID
+     * Пошук книги за UUID.
+     *
      * @param uuid UUID книги для пошуку
      * @return Знайдена книга або null, якщо не знайдено
      */
@@ -124,7 +128,7 @@ public class Library {
     }
 
     /**
-     * Отримує унікальний ідентифікатор бібліотеки
+     * Отримує унікальний ідентифікатор бібліотеки.
      *
      * @return UUID бібліотеки
      */
@@ -133,7 +137,7 @@ public class Library {
     }
 
     /**
-     * Встановлює унікальний ідентифікатор
+     * Встановлює унікальний ідентифікатор.
      *
      * @param id унікальний ідентифікатор
      */
@@ -150,7 +154,7 @@ public class Library {
      * @param bookToDelete Книга для видалення
      * @return true, якщо книга була успішно видалена, false якщо ні
      */
-    public boolean delete(Book bookToDelete)  {
+    public boolean delete(Book bookToDelete) {
         return bookInventory.keySet().remove(bookToDelete);
     }
 
@@ -158,10 +162,10 @@ public class Library {
      * Оновлює існуючу книгу новими даними.
      *
      * @param existingObject Існуюча книга для оновлення
-     * @param newObject Нова версія книги
+     * @param newObject      Нова версія книги
      * @return true, якщо оновлення пройшло успішно, false якщо ні
      */
-    public boolean update(Book existingObject, Book newObject)  {
+    public boolean update(Book existingObject, Book newObject) {
         if (existingObject == null || newObject == null) {
             return false;
         }
@@ -186,11 +190,11 @@ public class Library {
     /**
      * Додає нову книгу до бібліотеки або збільшує кількість книг що існують.
      *
-     * @param book Книга для додавання
+     * @param book     Книга для додавання
      * @param quantity Кількість книг
      * @return true, якщо книга успішно додана, false якщо ні
      */
-    public boolean addNewBook(Book book, int quantity)  {
+    public boolean addNewBook(Book book, int quantity) {
         if (book == null || quantity <= 0) {
             return false;
         }
@@ -214,7 +218,7 @@ public class Library {
     }
 
     /**
-     * Метод для перевірки чи однакові книги не порівнюючи ID
+     * Метод для перевірки чи однакові книги не порівнюючи ID.
      *
      * @param book1 Книга з бібліотеки
      * @param book2 Книга яку створюємо/додаємо
@@ -236,7 +240,7 @@ public class Library {
     }
 
     /**
-     * Метод для порівняння спеціальних полів книг
+     * Метод для порівняння спеціальних полів книг.
      *
      * @param book1 книга з бібліотеки
      * @param book2 книга яку створюємо/додаємо
@@ -351,7 +355,7 @@ public class Library {
      */
     public Map<Book, Integer> getAllBooks() {
         Map<Book, Integer> booksCopy = new HashMap<>();
-        for (Map.Entry<Book, Integer> entry : bookInventory.entrySet()){
+        for (Map.Entry<Book, Integer> entry : bookInventory.entrySet()) {
             booksCopy.put(createBookCopy(entry.getKey()), entry.getValue());
         }
 
@@ -359,7 +363,7 @@ public class Library {
     }
 
     /**
-     * Повертає відсортований список всіх книг у бібліотеці разом з їх кількістю
+     * Повертає відсортований список всіх книг у бібліотеці разом з їх кількістю.
      *
      * @param comparator компаратор, який визначає основний критерій сортування книг
      * @return відсортований список
@@ -376,7 +380,7 @@ public class Library {
     }
 
     /**
-     * Отримує назву бібліотеки
+     * Отримує назву бібліотеки.
      *
      * @return Назва бібліотеки
      */
@@ -385,7 +389,7 @@ public class Library {
     }
 
     /**
-     * Встановлює назву бібліотеки
+     * Встановлює назву бібліотеки.
      *
      * @param name Назва бібліотеки
      */
@@ -397,7 +401,7 @@ public class Library {
     }
 
     /**
-     * Отримує адрес бібліотеки
+     * Отримує адрес бібліотеки.
      *
      * @return Адрес бібліотеки
      */
@@ -406,7 +410,7 @@ public class Library {
     }
 
     /**
-     * Встановлює адрес бібліотеки
+     * Встановлює адрес бібліотеки.
      *
      * @param address Адрес бібліотеки
      */
@@ -418,7 +422,7 @@ public class Library {
     }
 
     /**
-     * Генерує унікальний хеш-код для об'єкта
+     * Генерує унікальний хеш-код для об'єкта.
      *
      * @return Числове значення хешу.
      */

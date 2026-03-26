@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD SuppressionFilter 1.2//EN" "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+    <suppress checks="NeedBraces" files=".*\.java"/>
+    <suppress checks="OperatorWrap" files=".*\.java"/>
+
+    <suppress checks="LineLength" files=".*\.java"/>
+    <suppress checks="HiddenField" files=".*\.java"/>
+    <suppress checks="Javadoc.*" files=".*\.java"/>
+    <suppress checks="FinalParameters" files=".*\.java"/>
+    <suppress checks="ParameterNumber" files=".*\.java"/>
+    <suppress checks="VisibilityModifier" files=".*\.java"/>
+    <suppress checks="NewlineAtEndOfFile" files=".*\.java"/>
+    <suppress checks="HideUtilityClassConstructor" files=".*\.java"/>
+    <suppress checks="MagicNumber" files=".*\.java"/>
+    <suppress checks="AvoidStarImport" files=".*\.java"/>
+    <suppress checks="MethodName" files="Driver\.java"/>
+    <suppress checks="MissingSwitchDefault" files=".*\.java"/>
+    <suppress checks="WhitespaceAfter" files="Driver\.java"/>
+</suppressions>

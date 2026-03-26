@@ -28,7 +28,7 @@ public abstract class Book implements Comparable<Book> {
      * @param genre  Жанр книги
      * @throws TitleException якщо назва порожня
      */
-    public Book(String title, String author, int year, String isbn, int pages, Genre genre) throws TitleException, AuthorException,YearException, IsbnException, PagesException, GenreException {
+    public Book(String title, String author, int year, String isbn, int pages, Genre genre) throws TitleException, AuthorException, YearException, IsbnException, PagesException, GenreException {
         this.id = UUID.randomUUID();
         setTitle(title);
         setAuthor(author);
@@ -39,7 +39,7 @@ public abstract class Book implements Comparable<Book> {
     }
 
     /**
-     * Конструктор копіювання
+     * Конструктор копіювання.
      *
      * @param book об'єкт для копіювання
      */
@@ -55,7 +55,7 @@ public abstract class Book implements Comparable<Book> {
     }
 
     /**
-     * Отримує унікальний ідентифікатор книги
+     * Отримує унікальний ідентифікатор книги.
      *
      * @return UUID книги
      */
@@ -64,7 +64,7 @@ public abstract class Book implements Comparable<Book> {
     }
 
     /**
-     * Встановлює унікальний ідентифікатор
+     * Встановлює унікальний ідентифікатор.
      *
      * @param id Унікальний ідентифікатор
      */
@@ -134,7 +134,7 @@ public abstract class Book implements Comparable<Book> {
      * @param year Рік видання
      * @throws YearException якщо рік виходить за межі 1450-2025
      */
-    public void setYear(int year) throws YearException{
+    public void setYear(int year) throws YearException {
         if (year < 1450 || year > Year.now().getValue()) {
             throw new YearException("Рік видання має бути у діапазоні 1450-" + Year.now().getValue());
         }
@@ -214,7 +214,7 @@ public abstract class Book implements Comparable<Book> {
      */
     @Override
     public String toString() {
-        return "Книга: " + title + ", Автор: " + author + ", UUID: " + id +  ", Рік видання: " + year + ", ISBN: " + isbn +
+        return "Книга: " + title + ", Автор: " + author + ", UUID: " + id + ", Рік видання: " + year + ", ISBN: " + isbn +
                 ", Сторінок: " + pages + ", Жанр: " + genre;
     }
 
@@ -235,7 +235,7 @@ public abstract class Book implements Comparable<Book> {
         if (result != 0) return result;
 
         result = Integer.compare(this.getYear(), other.getYear());
-        if (result!=0) return result;
+        if (result != 0) return result;
 
         result = this.getIsbn().compareTo(other.getIsbn());
         if (result != 0) return result;
@@ -274,7 +274,7 @@ public abstract class Book implements Comparable<Book> {
     }
 
     /**
-     * Генерує унікальний хеш-код для об'єкта
+     * Генерує унікальний хеш-код для об'єкта.
      *
      * @return Числове значення хешу.
      */
@@ -293,8 +293,8 @@ public abstract class Book implements Comparable<Book> {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Book book=(Book) obj;
-        return id.equals(book.id)&&
+        Book book = (Book) obj;
+        return id.equals(book.id) &&
                 title.equals(book.title) &&
                 author.equals(book.author) &&
                 year == book.year &&

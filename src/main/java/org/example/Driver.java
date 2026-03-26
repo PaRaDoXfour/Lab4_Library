@@ -23,14 +23,12 @@ import java.util.*;
  */
 public class Driver {
 
-    public void MyMethod(){}
-
     /**
      * Основнеий метод програми. Виводить та обробляє вибір користувача.
      *
      * @param args Аргументи командного рядка (не використовуються).
      */
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Library library;
 
@@ -139,7 +137,7 @@ public class Driver {
                     default:
                         System.out.println("Невірний вибір, спробуйте ще раз.");
                 }
-            } catch (LibraryException e){
+            } catch (LibraryException e) {
                 System.out.println("Помилка: " + e.getMessage());
             }
         } while (choice != 8);
@@ -192,6 +190,7 @@ public class Driver {
 
     /**
      * Видає книгу з бібліотеки читачеві
+     *
      * @param scanner Об'єкт для зчитування вводу користувача
      * @param library Бібліотека, з якої видається книга
      * @throws BookNotFoundException Якщо книга не знайдена або недоступна
@@ -244,6 +243,7 @@ public class Driver {
 
     /**
      * Повертає книгу до бібліотеки
+     *
      * @param scanner Об'єкт для зчитування вводу
      * @param library Бібліотека, куди повертається книга
      * @throws BookNotFoundException Якщо запис про видачу не знайдено
@@ -284,8 +284,10 @@ public class Driver {
             System.out.println("Книга успішно повернена!");
         }
     }
+
     /**
      * Відображає список активних виданих книг
+     *
      * @param library Бібліотека, з якої отримуємо дані
      */
     private static void displayActiveLoans(Library library) {
@@ -303,6 +305,7 @@ public class Driver {
 
     /**
      * Зчитує очікувану дату повернення книги
+     *
      * @param scanner Об'єкт для зчитування вводу
      * @return LocalDate або null, якщо дата не вказана
      */
@@ -325,8 +328,9 @@ public class Driver {
 
     /**
      * Зчитує дату з валідацією формату
-     * @param scanner Об'єкт для зчитування вводу
-     * @param prompt Повідомлення для користувача
+     *
+     * @param scanner      Об'єкт для зчитування вводу
+     * @param prompt       Повідомлення для користувача
      * @param defaultValue Значення за замовчуванням (може бути null)
      * @return Об'єкт LocalDate
      */
@@ -419,7 +423,7 @@ public class Driver {
         // Виводимо список книг для вибору
         System.out.println("Оберіть книгу для модифікації: ");
         List<Book> booksList = new ArrayList<>(allBooks.keySet());
-        for (int i = 0; i < booksList.size(); i++){
+        for (int i = 0; i < booksList.size(); i++) {
             System.out.println((i + 1) + ". " + booksList.get(i));
         }
         System.out.println((booksList.size() + 1) + ". Повернутись до попереднього меню");
@@ -447,19 +451,17 @@ public class Driver {
         System.out.println("6. Жанр");
 
         // Додаткові атрибути залежно від типу книги
-        if (modifiedBook instanceof EBook){
+        if (modifiedBook instanceof EBook) {
             System.out.println("7. Формат");
             System.out.println("8. Розмір файлу");
             maxOption = 8;
-        }
-        else if (modifiedBook instanceof PaperBook){
+        } else if (modifiedBook instanceof PaperBook) {
             System.out.println("7. Тип обкладинки");
-            if (modifiedBook instanceof RareBook){
+            if (modifiedBook instanceof RareBook) {
                 System.out.println("8. Орієнтована вартість");
                 System.out.println("9. Рік першого видання");
                 maxOption = 9;
-            }
-            else {
+            } else {
                 maxOption = 7;
             }
         } else if (modifiedBook instanceof Audiobook) {
@@ -471,8 +473,8 @@ public class Driver {
 
 
         int attributeChoice = readValidInt(scanner, "Ваш вибір: ", 1,
-                modifiedBook instanceof RareBook ? 10 :
-                        modifiedBook instanceof EBook || modifiedBook instanceof Audiobook ? 9 :
+                modifiedBook instanceof RareBook ? 10
+                        : modifiedBook instanceof EBook || modifiedBook instanceof Audiobook ? 9 :
                                 modifiedBook instanceof PaperBook ? 8 : 7);
 
         // Обробка вибору "Повернутись"
@@ -533,10 +535,12 @@ public class Driver {
                 System.out.println("Помилка при оновленні книги.");
             }
         } catch (TitleException | AuthorException | YearException | IsbnException | PagesException | GenreException |
-                 FileSizeException | DurationException | ValueException | FirstPrintYearException | NarratorException e) {
+                 FileSizeException | DurationException | ValueException | FirstPrintYearException |
+                 NarratorException e) {
             System.out.println("Помилка: " + e.getMessage());
         }
     }
+
     /**
      * Відображає меню пошуку книг та обробляє вибір користувача.
      *
@@ -562,23 +566,23 @@ public class Driver {
             }
 
             switch (choice) {
-                    case 1:
-                        searchAndDisplayByUUID(scanner, library);
-                        break;
-                    case 2:
-                        searchAndDisplayByTitle(scanner, library);
-                        break;
-                    case 3:
-                        searchAndDisplayByAuthor(scanner, library);
-                        break;
-                    case 4:
-                        searchAndDisplayByGenre(scanner, library);
-                    case 5:
-                        System.out.println("Програма завершена.");
-                        break;
-                    default:
-                        System.out.println("Невірний вибір, спробуйте ще раз.");
-                }
+                case 1:
+                    searchAndDisplayByUUID(scanner, library);
+                    break;
+                case 2:
+                    searchAndDisplayByTitle(scanner, library);
+                    break;
+                case 3:
+                    searchAndDisplayByAuthor(scanner, library);
+                    break;
+                case 4:
+                    searchAndDisplayByGenre(scanner, library);
+                case 5:
+                    System.out.println("Програма завершена.");
+                    break;
+                default:
+                    System.out.println("Невірний вибір, спробуйте ще раз.");
+            }
         } while (choice != 5);
     }
 
@@ -590,14 +594,14 @@ public class Driver {
             UUID uuid = UUID.fromString(uuidString);
             Book foundBook = library.searchByUUID(uuid);
 
-            if (foundBook != null){
+            if (foundBook != null) {
                 System.out.println("\nЗнайдена книга:");
                 System.out.println(foundBook);
                 System.out.println("Кількість: " + library.getAllBooks().get(foundBook));
             } else {
                 System.out.println("\nКнига за UUID " + uuidString + " не знайдена.");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Помилка: невідомий формат UUID.");
         }
     }
@@ -608,7 +612,7 @@ public class Driver {
      * @param scanner Об'єкт Scanner для зчитування вводу
      * @param library Об'єкт Library, що містить колекцію книг
      */
-    private static void searchAndDisplayByTitle(Scanner scanner, Library library)  {
+    private static void searchAndDisplayByTitle(Scanner scanner, Library library) {
         System.out.println("\nВведіть назву або частину назви для пошуку: ");
         String searchTerm = scanner.nextLine().trim();
         Map<Book, Integer> foundBooks = library.searchByTitle(searchTerm);
@@ -643,7 +647,7 @@ public class Driver {
     /**
      * Відображає результати пошуку у стандартизованому форматі.
      *
-     * @param books Мапа знайдених книг (книга → кількість)
+     * @param books    Мапа знайдених книг (книга → кількість)
      * @param criteria Рядок, що описує критерій пошуку
      */
     private static void displaySearchResults(Map<Book, Integer> books, String criteria) {
@@ -785,8 +789,8 @@ public class Driver {
     /**
      * Додає нову електронну книгу до бібліотеки після отримання даних від користувача.
      *
-     * @param scanner Об'єкт Scanner для читання вводу
-     * @param library Об'єкт Library, що містить колекцію книг
+     * @param scanner  Об'єкт Scanner для читання вводу
+     * @param library  Об'єкт Library, що містить колекцію книг
      * @param quantity Кількість книг
      */
     private static void addEBook(Scanner scanner, Library library, int quantity) {
@@ -811,7 +815,7 @@ public class Driver {
         } catch (GenreException | YearException | PagesException | AuthorException |
                  TitleException | IsbnException | FileSizeException e) {
             System.out.println("Помилка введення даних: " + e.getMessage());
-        }  catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Невідома помилка: " + e.getMessage());
         }
     }
@@ -819,8 +823,8 @@ public class Driver {
     /**
      * Додає нову паперову книгу до бібліотеки після отримання даних від користувача.
      *
-     * @param scanner Об'єкт Scanner для читання вводу
-     * @param library Об'єкт Library, що містить колекцію книг
+     * @param scanner  Об'єкт Scanner для читання вводу
+     * @param library  Об'єкт Library, що містить колекцію книг
      * @param quantity Кількість книг
      */
     private static void addPaperBook(Scanner scanner, Library library, int quantity) {
@@ -850,8 +854,8 @@ public class Driver {
     /**
      * Додає нову аудіокнигу до бібліотеки після отримання даних від користувача.
      *
-     * @param scanner Об'єкт Scanner для читання вводу
-     * @param library Об'єкт Library, що містить колекцію книг
+     * @param scanner  Об'єкт Scanner для читання вводу
+     * @param library  Об'єкт Library, що містить колекцію книг
      * @param quantity Кількість книг
      */
     private static void addAudiobook(Scanner scanner, Library library, int quantity) {
@@ -864,10 +868,10 @@ public class Driver {
             int pages = 1;
             Genre genre = readValidGenre(scanner);
 
-            double duration = readValidDouble(scanner,"Тривалість (год.): ", 0.1, 100);
-            String narrator = readNonEmptyString(scanner,"Диктор: ");
+            double duration = readValidDouble(scanner, "Тривалість (год.): ", 0.1, 100);
+            String narrator = readNonEmptyString(scanner, "Диктор: ");
 
-            Audiobook audioBook =  new Audiobook(title, author, year, isbn, pages, genre, duration, narrator);
+            Audiobook audioBook = new Audiobook(title, author, year, isbn, pages, genre, duration, narrator);
             if (library.addNewBook(audioBook, quantity)) {
                 System.out.println("Аудіокнига успішно додана!");
             } else {
@@ -882,8 +886,8 @@ public class Driver {
     /**
      * Додає нову рідкісну книгу до бібліотеки після отримання даних від користувача.
      *
-     * @param scanner Об'єкт Scanner для читання вводу
-     * @param library Об'єкт Library, що містить колекцію книг
+     * @param scanner  Об'єкт Scanner для читання вводу
+     * @param library  Об'єкт Library, що містить колекцію книг
      * @param quantity Кількість книг
      */
     private static void addRareBook(Scanner scanner, Library library, int quantity) {
@@ -897,8 +901,8 @@ public class Driver {
             Genre genre = readValidGenre(scanner);
 
             boolean hardcover = readCoverType(scanner);
-            int value = readValidInt(scanner,"Орієнтовна вартість ($): ", 1, Integer.MAX_VALUE);
-            int firstPrintYear = readValidInt(scanner,"Рік першого видання: ", 1450, year);
+            int value = readValidInt(scanner, "Орієнтовна вартість ($): ", 1, Integer.MAX_VALUE);
+            int firstPrintYear = readValidInt(scanner, "Рік першого видання: ", 1450, year);
 
             RareBook rareBook = new RareBook(title, author, year, isbn, pages, genre, hardcover, value, firstPrintYear);
             if (library.addNewBook(rareBook, quantity)) {
@@ -912,12 +916,11 @@ public class Driver {
         }
     }
 
-
     /**
      * Зчитує непорожній рядок від користувача.
      *
      * @param scanner Об'єкт Scanner для читання вводу
-     * @param prompt Повідомлення для користувача.
+     * @param prompt  Повідомлення для користувача.
      * @return Введений рядок
      */
     private static String readNonEmptyString(Scanner scanner, String prompt) {
@@ -936,9 +939,9 @@ public class Driver {
      * Зчитує коректне число у вказаному діапазоні.
      *
      * @param scanner Об'єкт Scanner для читання вводу
-     * @param prompt Повідомлення для користувача.
-     * @param min Мінімальне значення.
-     * @param max Максимальне значення.
+     * @param prompt  Повідомлення для користувача.
+     * @param min     Мінімальне значення.
+     * @param max     Максимальне значення.
      * @return Валідне ціле число у межах [min, max].
      */
     private static int readValidInt(Scanner scanner, String prompt, int min, int max) {
@@ -961,9 +964,9 @@ public class Driver {
      * Зчитує коректне число з плаваючою точкою у вказаному діапазоні.
      *
      * @param scanner Об'єкт Scanner для читання вводу
-     * @param prompt Повідомлення для користувача.
-     * @param min Мінімальне значення.
-     * @param max Максимальне значення.
+     * @param prompt  Повідомлення для користувача.
+     * @param min     Мінімальне значення.
+     * @param max     Максимальне значення.
      * @return Валідне число у межах [min, max].
      */
     private static double readValidDouble(Scanner scanner, String prompt, double min, double max) {
@@ -1041,7 +1044,7 @@ public class Driver {
             System.out.printf("%d. %s\n", i + 1, formats[i]);
         }
 
-        int choice = readValidInt(scanner,"Оберіть формат (1-" + formats.length + "): ", 1, formats.length);
+        int choice = readValidInt(scanner, "Оберіть формат (1-" + formats.length + "): ", 1, formats.length);
         return formats[choice - 1];
     }
 
@@ -1056,8 +1059,11 @@ public class Driver {
         System.out.println("1. М'яка");
         System.out.println("2. Тверда");
 
-        int choice = readValidInt(scanner,"Оберіть тип обкладинки (1-2): ", 1, 2);
+        int choice = readValidInt(scanner, "Оберіть тип обкладинки (1-2): ", 1, 2);
         return choice == 2;
+    }
+
+    public void MyMethod() {
     }
 }
 

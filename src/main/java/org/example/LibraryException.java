@@ -1,11 +1,11 @@
 package org.example;
 
 /**
- * Базовий клас винятків для бібліотечної системи
+ * Базовий клас винятків для бібліотечної системи.
  */
-public class LibraryException extends Exception{
+public class LibraryException extends Exception {
     /**
-     * Конструктор за замовчуванням зі стандартним повідомленням
+     * Конструктор за замовчуванням зі стандартним повідомленням.
      */
     public LibraryException() {
         super("Помилка бібліотечної системи");
@@ -13,9 +13,10 @@ public class LibraryException extends Exception{
 
     /**
      * Конструктор з можливістю вказання спеціалізованого повідомлення.
+     *
      * @param message детальне повідомлення про помилку
      */
-    public LibraryException(String message){
+    public LibraryException(String message) {
         super(message);
     }
 }
