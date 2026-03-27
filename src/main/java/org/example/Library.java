@@ -1,5 +1,8 @@
 package org.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,6 +12,7 @@ import java.util.stream.Collectors;
  * Містить колекцію книг з інформацією про їх кількість.
  */
 public class Library {
+    private static Logger log = LoggerFactory.getLogger(Library.class);
     private final Map<Book, Integer> bookInventory;
     private final List<LoanRecord> loanRecords;
     private UUID id;
@@ -285,7 +289,10 @@ public class Library {
                 default -> throw new IllegalArgumentException("Невідомий тип книги: " + original.getClass().getName());
             };
         } catch (InvalidDataException | BookException e) {
-            System.out.println("Помилка при створенні копії книги: " + e.getMessage());
+            String errorId = UUID.randomUUID().toString();
+            System.out.println("Виникла помилка. Зверніться до підтримки та вкажіть ID: " + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при створенні копії книги. Контекст: operation='createBookCopy', original='{}', bookClass='{}'.",
+                    errorId, original, original.getClass().getName(), e);
         }
 
         return original;

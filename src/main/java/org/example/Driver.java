@@ -19,6 +19,7 @@ import java.util.*;
  */
 public class Driver {
     private static Logger log = LoggerFactory.getLogger(Driver.class);
+    private static final String USER_FRIENDLY_ERROR_MSG = "Виникла помилка. Зверніться до підтримки та вкажіть ID: ";
 
     /**
      * Основний метод програми. Виводить та обробляє вибір користувача.
@@ -57,22 +58,30 @@ public class Driver {
                 try {
                     library.addNewBook(book, 1); // Додаємо по одній книзі кожного типу
                 } catch (Exception e) {
-                    System.out.println("Помилка при додаванні книги: " + e.getMessage());
-                    log.error("Помилка при імпорті книги '{}' із файлу.", book.getTitle(), e);
+                    String errorId = UUID.randomUUID().toString();
+                    System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+                    log.error("[ErrorID: {}] - Критична помилка при імпорті книги. Контекст: title='{}', operation='addNewBook', quantity={}.",
+                            errorId, book.getTitle(), 1, e);
                 }
             }
             log.debug("Завантажено {} книг з файлу.", booksFromFile.size());
         } catch (LibraryNameException | LibraryAddressException e) {
-            System.out.println("Помилка при створенні бібліотеки: " + e.getMessage());
-            log.error("Помилка при ініціалізації бібліотеки.", e);
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при ініціалізації бібліотеки. Контекст: operation='main:initLibrary'.",
+                    errorId, e);
             return;
         } catch (IOException e) {
-            System.out.println("Помилка при роботі з файлом: " + e.getMessage());
-            log.error("Помилка вводу/виводу під час старту програми.", e);
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при стартовому читанні даних. Контекст: operation='main:startupRead', inputFile='input.txt'.",
+                    errorId, e);
             return;
         } catch (Exception e) {
-            System.out.println("Невідома помилка: " + e.getMessage());
-            log.error("Невідома критична помилка під час старту програми.", e);
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при старті програми. Контекст: operation='main:startup', args='{}'.",
+                    errorId, Arrays.toString(args), e);
             return;
         }
 
@@ -83,11 +92,15 @@ public class Driver {
             System.out.println("Дані успішно збережено у файл.");
             log.info("Дані бібліотеки успішно збережено.");
         } catch (IOException e) {
-            System.out.println("Помилка при збереженні даних: " + e.getMessage());
-            log.error("Помилка при збереженні даних у файл.", e);
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при збереженні даних. Контекст: operation='main:saveBooks', library='{}'.",
+                    errorId, library.getName(), e);
         } catch (Exception e) {
-            System.out.println("Невідома помилка: " + e.getMessage());
-            log.error("Невідома помилка під час завершальної обробки.", e);
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при завершальній обробці. Контекст: operation='main:shutdown', library='{}'.",
+                    errorId, library.getName(), e);
         } finally {
             scanner.close();
             log.info("Програму завершено.");
@@ -153,8 +166,10 @@ public class Driver {
                         System.out.println("Невірний вибір, спробуйте ще раз.");
                 }
             } catch (LibraryException e) {
-                System.out.println("Помилка: " + e.getMessage());
-                log.error("Помилка бізнес-логіки у головному меню.", e);
+                String errorId = UUID.randomUUID().toString();
+                System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+                log.error("[ErrorID: {}] - Критична помилка при обробці головного меню. Контекст: choice={}, library='{}'.",
+                        errorId, choice, library.getName(), e);
             }
         } while (choice != 8);
     }
@@ -201,8 +216,10 @@ public class Driver {
                         System.out.println("Невірний вибір, спробуйте ще раз.");
                 }
             } catch (LibraryException e) {
-                System.out.println("Помилка: " + e.getMessage());
-                log.error("Помилка в операціях видачі/повернення.", e);
+                String errorId = UUID.randomUUID().toString();
+                System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+                log.error("[ErrorID: {}] - Критична помилка при операції видачі/повернення. Контекст: choice={}, library='{}'.",
+                        errorId, choice, library.getName(), e);
             }
         } while (choice != 4);
     }
@@ -621,8 +638,10 @@ public class Driver {
                 System.out.println("\nКнига за UUID " + uuidString + " не знайдена.");
             }
         } catch (Exception e) {
-            System.out.println("Помилка: невідомий формат UUID.");
-            log.error("Введено невалідний UUID: '{}'.", uuidString, e);
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при пошуку книги за UUID. Контекст: uuidInput='{}'.",
+                    errorId, uuidString, e);
         }
     }
 
@@ -836,7 +855,10 @@ public class Driver {
                  TitleException | IsbnException | FileSizeException e) {
             System.out.println("Помилка введення даних: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Невідома помилка: " + e.getMessage());
+            String errorId = UUID.randomUUID().toString();
+            System.out.println(USER_FRIENDLY_ERROR_MSG + errorId);
+            log.error("[ErrorID: {}] - Критична помилка при додаванні електронної книги. Контекст: operation='addEBook', quantity={}.",
+                    errorId, quantity, e);
         }
     }
 

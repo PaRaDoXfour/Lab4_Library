@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Клас для роботи з файлами - читання та запис даних.
@@ -136,11 +137,15 @@ public class FileHandler {
                     int firstPrintYear = Integer.parseInt(readNonNullLine(reader));
                     return new RareBook(title, author, year, isbn, pages, genre, rareHardcover, value, firstPrintYear);
                 default:
-                    log.error("Невідомий тип книги в файлі: {}", type);
+                    String errorId = UUID.randomUUID().toString();
+                    log.error("[ErrorID: {}] - Критична помилка при читанні типу книги. Контекст: operation='readBookData', file='{}', type='{}'.",
+                            errorId, FILE_NAME, type);
                     return null;
             }
         } catch (Exception e) {
-            log.error("Помилка при читанні даних книги типу {}.", type, e);
+            String errorId = UUID.randomUUID().toString();
+            log.error("[ErrorID: {}] - Критична помилка при парсингу книги. Контекст: operation='readBookData', file='{}', type='{}'.",
+                    errorId, FILE_NAME, type, e);
             return null;
         }
     }
